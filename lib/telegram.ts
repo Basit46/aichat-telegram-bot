@@ -7,5 +7,6 @@ export async function sendMessage(chatId: number, text: string) {
   return axios.post(`${BASE_URL}/sendMessage`, {
     chat_id: chatId,
     text,
+    parse_mode: "HTML",
   });
 }
