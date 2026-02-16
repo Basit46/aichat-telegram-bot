@@ -8,8 +8,6 @@ export async function POST(req: NextRequest) {
   const message = body.message;
   if (!message) return NextResponse.json({ ok: true });
 
-  console.log(message.text);
-
   const chatId = message.chat.id;
   const text = message.text;
 

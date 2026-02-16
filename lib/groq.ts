@@ -19,6 +19,11 @@ export async function getGroqChatCompletion(content: string) {
   return groq.chat.completions.create({
     messages: [
       {
+        role: "system",
+        content:
+          "Reply using Telegram-compatible HTML only. Allowed tags: <b>, <i>, <code>, <pre>, <a>. No markdown.",
+      },
+      {
         role: "user",
         content,
       },
