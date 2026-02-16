@@ -3,9 +3,16 @@ import Groq from "groq-sdk";
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function chatWithGroq(content: string) {
-  const chatCompletion = await getGroqChatCompletion(content);
+  let chatCompletion: any = "";
 
-  return chatCompletion.choices[0]?.message?.content || "";
+  try {
+    const res = await getGroqChatCompletion(content || "hello");
+    chatCompletion = res.choices[0]?.message?.content || "";
+  } catch {
+    chatCompletion = "Not available";
+  }
+
+  return chatCompletion;
 }
 
 export async function getGroqChatCompletion(content: string) {
